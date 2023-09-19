@@ -14,18 +14,18 @@ import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
-
+public class UserDetailsServiceImpl implements UserDetailsService {
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(userName);
 
 		if (usuario.isPresent())
-			return new UserDetailslmpl(usuario.get());
+			return new UserDetailsImpl(usuario.get());
 		else
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 			
